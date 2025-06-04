@@ -1,0 +1,62 @@
+<!-- dashboard.html -->
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Dashboard - Layanan Kebersihan</title>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700&display=swap" rel="stylesheet">
+  <style>
+    body { margin: 0; font-family: 'Plus Jakarta Sans', sans-serif; background-color: #f9fafb; color: #1f2937; }
+    header { background-color: #16a34a; color: white; padding: 20px 40px; display: flex; justify-content: space-between; align-items: center; }
+    nav a { color: white; margin-left: 24px; text-decoration: none; font-weight: 600; }
+    nav a:hover { text-decoration: underline; }
+    .container { max-width: 1200px; margin: 40px auto; padding: 0 20px; }
+    .dashboard-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 20px; margin-top: 20px; }
+    .card { background: white; padding: 20px; border-radius: 12px; box-shadow: 0 4px 8px rgba(0,0,0,0.05); transition: transform 0.3s ease, box-shadow 0.3s ease; opacity: 0; transform: translateY(20px); }
+    .card:hover { transform: translateY(-5px); box-shadow: 0 6px 15px rgba(0,0,0,0.1); }
+    .card.visible { opacity: 1; transform: translateY(0); transition: all 0.8s ease; }
+    .card h3 { margin-bottom: 10px; color: #065f46; }
+    .summary { font-size: 1.1rem; margin-top: 8px; }
+    footer { text-align: center; background: #e5e7eb; padding: 20px; color: #374151; margin-top: 60px; }
+    html { scroll-behavior: smooth; }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>🌿 Dashboard</h1>
+    <nav>
+      <a href="index.html">Beranda</a>
+      <a href="layanan.html">Layanan</a>
+      <a href="formulir.html">Formulir</a>
+      <a href="kontak.html">Kontak</a>
+    </nav>
+  </header>
+
+  <div class="container">
+    <h2>Statistik Pemesanan</h2>
+    <div class="dashboard-grid">
+      <div class="card fade-in"> <h3>Total Pemesanan</h3> <p class="summary">120 Pesanan</p> </div>
+      <div class="card fade-in"> <h3>Pembersihan Rumah</h3> <p class="summary">55 Pemesanan</p> </div>
+      <div class="card fade-in"> <h3>Pengangkutan Sampah</h3> <p class="summary">40 Pemesanan</p> </div>
+      <div class="card fade-in"> <h3>Pembersihan Lingkungan</h3> <p class="summary">25 Pemesanan</p> </div>
+    </div>
+  </div>
+
+  <footer>
+    &copy; 2025 Layanan Kebersihan. Semua hak dilindungi.
+  </footer>
+
+  <script>
+    const faders = document.querySelectorAll('.card');
+    const observer = new IntersectionObserver(entries => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+        }
+      });
+    });
+    faders.forEach(el => observer.observe(el));
+  </script>
+</body>
+</html>
